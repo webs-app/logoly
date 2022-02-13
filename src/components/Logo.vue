@@ -1,6 +1,8 @@
 <style lang="stylus" scoped>
 .logo
     padding 50px 0px 20px
+    margin-top: constant(safe-area-inset-top)
+    margin-top: env(safe-area-inset-top)
 .prefix
     color #fff
     padding 5px

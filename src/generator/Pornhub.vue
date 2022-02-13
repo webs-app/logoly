@@ -11,13 +11,15 @@
   padding: 40px;
   margin: 40px 10px;
   max-width: 100%;
+  overflow: auto;
 
   .editarea {
     padding: 20px;
     text-align: center;
     font-size: 60px;
-    font-weight: 700;
-
+    // font-weight: bold;
+    white-space: nowrap;
+    display: inline-block;
     .prefix {
       color: #fff;
       padding: 5px 5px;
@@ -38,6 +40,7 @@
   justify-content: space-around;
   width: 100%;
   margin-bottom: 50px;
+  flex-flow: column;
 
   .customize-color > div, .customize-misc > div {
     padding: 8px 0;
@@ -76,7 +79,7 @@
     <div
       class="box"
       v-tooltip="{
-        content: 'Edit the text to create your own logo',
+        content: '编辑文字',
         show: true,
         classes: 'tooltipClasses',
       }"
@@ -132,25 +135,38 @@
     </div>
 
     <div class="customize">
+      <div class="customize-misc">
+        <div>
+          字体大小:
+          <input type="range" min="30" max="200" v-model="fontSize" />
+          {{ fontSize }}px
+        </div>
+        <div>
+          字体:
+          <FontSelector v-on:update-font="(font)=>fontFamily = font" />
+        </div>
+        <div>
+          调转方向:
+          <input type="checkbox" v-model="reverseHighlight" />
+        </div>
+      </div>
       <div
         class="customize-color"
-        id="prefixColor"
-        v-tooltip="{ content: 'Pick a color you like', show: true, classes: 'tooltipClasses' }"
-      >
+        id="prefixColor">
         <div>
-          Prefix Text Color: &nbsp;
+          前缀颜色: &nbsp;
           <input type="color" v-model="prefixColor" />
         </div>
         <div>
-          Suffix Text Color: &nbsp;
+          后缀颜色: &nbsp;
           <input type="color" v-model="suffixColor" />
         </div>
         <div>
-          Suffix Background Color: &nbsp;
+          后缀背景色: &nbsp;
           <input type="color" v-model="postfixBgColor" />
         </div>
         <div>
-          Transparent Background: &nbsp;
+          是否透明背景: &nbsp;
           <input
             type="checkbox"
             value="transparentBg"
@@ -159,33 +175,18 @@
         </div>
       </div>
 
-      <div class="customize-misc">
-        <div>
-          Font Size:
-          <input type="range" min="30" max="200" v-model="fontSize" />
-          {{ fontSize }}px
-        </div>
-        <div>
-          Font:
-          <FontSelector v-on:update-font="(font)=>fontFamily = font" />
-        </div>
-        <div>
-          Reverse Highlight:
-          <input type="checkbox" v-model="reverseHighlight" />
-        </div>
-      </div>
+   
     </div>
 
     <div class="download-share">
       <div
         class="download"
-        v-tooltip="{ content: 'Export your own logo', show: true, classes: 'tooltipClasses' }"
         @click="download"
-      >Export</div>
+      >导出</div>
 
-      <div class="share" @click="twitter">
+      <!-- <div class="share" @click="twitter">
         <i class="iconfont icon-twitter"></i> Tweet
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

@@ -9,13 +9,16 @@
     padding 40px
     margin 40px 0px
     max-width 100%
+    overflow: auto;
+    
     .editarea
         padding 20px
         text-align center
         font-size 60px
-        font-weight 700
+        // font-weight bold
         border-radius 10px
-
+        white-space: nowrap;
+        display: inline-block;
         .prefix
             color #fff
             padding 5px 5px
@@ -40,6 +43,7 @@
   justify-content space-around
   width 100%
   margin-bottom 50px
+  flex-flow: column;
   .customize-color > div,
   .customize-misc > div
     padding 8px 0
@@ -66,8 +70,8 @@
 
 <template>
     <div class="pornhub">
-        <div class="box" v-tooltip="{content:'Edit the text to create your own logo', show: true, classes: 'tooltipClasses'}">
-            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor}">
+        <div class="box" v-tooltip="{content:'编辑文字', show: true, classes: 'tooltipClasses'}">
+            <div class="editarea" id="logo" :style="{'font-size':fontSize + 'px','background-color':transparentBgColor,'font-family':fontFamily}">
                 <template v-if="!reverseHighlight">
                 <p class="prefix"  @input="updatePrefix" :style="{'color':prefixColor}"  contenteditable>{{prefixText}}</p>
                 <p class="postfix" @input="updateSuffix" :style="{'color':suffixColor, 'background-color':postfixBgColor}" contenteditable>{{suffixText}}</p>
@@ -80,44 +84,48 @@
         </div>
 
         <div class="customize">
+            <div class="customize-misc">
+            <div>
+              字体大小: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
+            </div>
+            <div>
+            字体:
+            <FontSelector v-on:update-font="(font)=>fontFamily = font" />
+            </div>
+            <div>调转方向: <input type="checkbox" v-model="reverseHighlight" /></div>
+          </div>
           <div
             class="customize-color"
             id="prefixColor"
-            v-tooltip="{ content: 'Pick a color you like', show: true, classes: 'tooltipClasses' }"
           >
-            <div>Prefix Text Color: &nbsp; <input type="color" v-model="prefixColor" /></div>
-            <div>Suffix Text Color: &nbsp; <input type="color" v-model="suffixColor" /></div>
-            <div>Suffix Background Color: &nbsp; <input type="color" v-model="postfixBgColor" /></div>
+            <div>前缀颜色: &nbsp; <input type="color" v-model="prefixColor" /></div>
+            <div>后缀颜色: &nbsp; <input type="color" v-model="suffixColor" /></div>
+            <div>后缀背景色: &nbsp; <input type="color" v-model="postfixBgColor" /></div>
             <div>
-              Transparent Background: &nbsp;
+              透明背景: &nbsp;
               <input type="checkbox" value="transparentBg" v-model="transparentBg" />
             </div>
           </div>
 
-          <div class="customize-misc">
-            <div>
-              Font Size: <input type="range" min="30" max="200" v-model="fontSize" /> {{ fontSize }}px
-            </div>
-            <div>Reverse Highlight: <input type="checkbox" v-model="reverseHighlight" /></div>
-          </div>
+  
         </div>
 
         <div class="download-share">
           <div
             class="download"
-            v-tooltip="{ content: 'Export your own logo', show: true, classes: 'tooltipClasses' }"
             @click="download"
           >
-            Export
+            导出
           </div>
 
-          <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div>
+          <!-- <div class="share" @click="twitter"><i class="iconfont icon-twitter"></i> Tweet</div> -->
         </div>
     </div>
 </template>
 
 <script>
 import domtoimage from 'dom-to-image';
+import FontSelector from '../components/FontSelector'
 
 export default {
     name:'pornhub',
@@ -127,12 +135,14 @@ export default {
             suffixColor: "#000000",
             postfixBgColor: "#ff9900",
             fontSize:"60",
+            fontFamily: 'sans-serif',
             transparentBg: false,
             reverseHighlight: false,
             prefixText: this.$store.state.prefix,
             suffixText: this.$store.state.suffix
         }
     },
+    components: { FontSelector },
     mounted: function () {
     //   this.$tours['pornhub'].start()
     },

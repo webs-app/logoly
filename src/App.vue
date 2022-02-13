@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Ribbon></Ribbon>
     <div class="logo">
       <logo></logo>
     </div>
@@ -9,24 +8,17 @@
     </div>
     <div id="nav">
       <div class="menu">
-        <router-link to="/about">About</router-link>
-        <router-link to="/" class="pb">
+        <router-link replace to="/" class="pb">
           <span class="prefix">Porn</span>
           <span class="postfix">hub</span>
         </router-link>
-        <router-link to="/vertical-ph" class="vph">
+        <router-link replace to="/vertical-ph"  class="vph">
           <p class="prefix">Porn</p>
           <p class="postfix">hub</p>
         </router-link>
-        <span class="disable">
-          <span class="prefix">You</span>
-          <span class="postfix">Tube</span>
-        </span>
-        <span class="disable">More coming soon...</span>
       </div>
     </div>
     <router-view class="container"/>
-    <Slogan class="container"></Slogan>
     <Faq class="container"></Faq>
     <Author class="container"></Author>
     <Copyright  class="container"></Copyright>
@@ -36,19 +28,15 @@
 <script>
 import Logo from "./components/Logo";
 import Description from "./components/Description";
-import Slogan from "./components/Slogan";
 import Faq from "./components/Faq";
 import Author from "./components/Author";
-import Ribbon from "./components/Ribbon";
 import Copyright from "./components/Copyright";
 export default {
   components: {
     logo: Logo,
     Description,
-    Slogan,
     Faq,
     Author,
-    Ribbon,
     Copyright
   }
 };

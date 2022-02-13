@@ -1,6 +1,6 @@
 <style lang="stylus" scoped>
 .avatar
-    width 10%
+    width 30%
     border-radius 50%
 .info
     display flex
@@ -22,15 +22,13 @@ h2
 
 <template>
     <div class="author">
-        <div class="info">
-            <img class="avatar" src="../assets/avatar.png" alt="bestony">
-            <h2> Bestony</h2>
-            <h4>An indie developer / Focus on something interesting.</h4>
-        </div>
-        <div class="social">
-            <a class="github" href="https://github.com/bestony"><i class="iconfont icon-github"></i> GitHub</a>
-            <a class="twitter" href="https://twitter.com/xiqingongzi"><i class="iconfont icon-twitter"></i> Twitter</a>
-            <a class="gmail" href="mailto:xiqingongzi+logoly@gmail.com"><i class="iconfont icon-gmail"></i> Email</a>
-        </div>
+       
+        <a href="https://github.com/bestony">
+            <div class="info">
+                <img class="avatar" src="../assets/avatar.png" alt="bestony">
+                <h3>该项目源于 Bestony</h3>
+            </div>
+        </a>
+       
     </div>
 </template>

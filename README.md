@@ -1,14 +1,5 @@
-<img align="right" src="https://postimg.aliavv.com/mbp/adpsj.png"/>
 
-# Logoly —— A Pornhub Flavour Logo Generator
-
-![](https://img.shields.io/badge/Deployed%20on-Vercel-9cf) ![GitHub last commit](https://img.shields.io/github/last-commit/bestony/logoly.svg) ![GitHub issues](https://img.shields.io/github/issues/bestony/logoly.svg) ![GitHub stars](https://img.shields.io/github/stars/bestony/logoly.svg?style=social)
-
-**A Simple Online Logo Generator for People Who Want to Design Logos Easily.**
-
-## Screenshot
-
-![](https://i.loli.net/2019/03/24/5c96e02e97aff.png)
+# webs 适配版本
 
 ## Features
 
